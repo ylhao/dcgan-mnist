@@ -22,7 +22,7 @@ OUTPUT_DIR = 'samples'
 if not os.path.exists(OUTPUT_DIR):
     os.mkdir(OUTPUT_DIR)
 
-	
+
 # X 用来传入真实的图片
 X = tf.placeholder(dtype=tf.float32, shape=[None, 28, 28, 1], name='X')
 # noise 传入噪声用以生成图片
@@ -156,7 +156,7 @@ z_samples = np.random.uniform(-1.0, 1.0, [batch_size, z_dim]).astype(np.float32)
 samples = []
 loss = {'d': [], 'g': []}
 # 训练 60000 步
-for i in range(60000):
+for i in range(2000):
     # 生成了 batch_size 个 z_dim 维的噪声数据
     # 这里是生成了 100 个 100 维的向量，这些向量中的值服从 -1 到 1 的均匀分布
     n = np.random.uniform(-1.0, 1.0, [batch_size, z_dim]).astype(np.float32)
@@ -172,15 +172,15 @@ for i in range(60000):
     loss['g'].append(g_ls)
     """
     训练判别器相对来说要容易一些，训练生成器相对来说要难一些，所以多训练一次生成器，这种做法比较粗糙
-    
-    To avoid the fast convergence of D (discriminator) network, 
+
+    To avoid the fast convergence of D (discriminator) network,
     G (generator) network is updated twice for each D network update, which differs from original paper.
     """
     sess.run(optimizer_d, feed_dict={X: batch, noise: n, is_training: True})
     sess.run(optimizer_g, feed_dict={X: batch, noise: n, is_training: True})
     sess.run(optimizer_g, feed_dict={X: batch, noise: n, is_training: True})
     # 每训练 1000 步，做一些操作
-    if i % 1000 == 0:
+    if i % 100 == 0:
         # 打印当前步数，判别器的 loss 值和生成器的 loss 值
         print(i, d_ls, g_ls)
         # 生成图片
@@ -203,6 +203,7 @@ for i in range(60000):
         # 将图片添加到列表中，生成动图用
         samples.append(gen_imgs)
 # 画 loss 曲线
+plt.figure(figsize=(8, 6))
 plt.plot(loss['d'], label='Discriminator')
 plt.plot(loss['g'], label='Generator')
 # 图例位于右上角
