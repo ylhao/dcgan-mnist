@@ -49,6 +49,9 @@ D 最大化该函数，G 最小化该函数，输入为 0 ~ 1 时，log 的输�
 ## 结果
 
 ![](samples.gif)
+
+## Loss
+
 ![](loss.png)
 
 ## 参考
@@ -56,3 +59,4 @@ D 最大化该函数，G 最小化该函数，输入为 0 ~ 1 时，log 的输�
 - 《深度有趣》
 - [GAN](https://github.com/YadiraF/GAN)
 - [tf.nn.sigmoid_cross_entropy_with_logits()](https://blog.csdn.net/m0_37393514/article/details/81393819)
+
