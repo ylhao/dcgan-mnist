@@ -216,4 +216,5 @@ imageio.mimsave(os.path.join(OUTPUT_DIR, 'samples.gif'), samples, fps=5)
 
 # 保存模型
 saver = tf.train.Saver()
-saver.save(sess, './mnist_dcgan', global_step=60000)
+saver.save(sess, './mnist_dcgan', global_step=2000)
+

@@ -29,7 +29,7 @@ def montage(images):
 sess = tf.Session()
 sess.run(tf.global_variables_initializer())
 
-saver = tf.train.import_meta_graph('./mnist_dcgan-60000.meta')
+saver = tf.train.import_meta_graph('./mnist_dcgan-2000.meta')
 saver.restore(sess, tf.train.latest_checkpoint('./'))
 
 graph = tf.get_default_graph()
@@ -45,3 +45,4 @@ gen_imgs = montage(imgs)
 plt.axis('off')
 plt.imshow(gen_imgs, cmap='gray')
 plt.savefig('gen.png')
+
