@@ -1,0 +1,4 @@
+MNIST_data/
+samples/
+checkpoint
+mnist_*
